@@ -1,36 +1,52 @@
 import React, { FC } from "react";
 
-import { useForm } from "react-hook-form";
+import { Formik, FormikHelpers, Field, Form, ErrorMessage } from "formik";
+import validateRegistrationForm from "../utils/registration/validateRegistrationForm";
 
 interface IRegisterProps {}
 
-const Register: FC<IRegisterProps> = props => {
-  const { register, handleSubmit } = useForm();
+interface FormValues {
+  email: string;
+  password: string;
+  confirm: string;
+}
 
-  const onSubmit = (data: any) => console.log(data);
+const Register: FC<IRegisterProps> = props => {
+  const handleSubmit = (
+    values: FormValues,
+    formikHelpers: FormikHelpers<FormValues>
+  ) => {
+    console.log(values);
+  };
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input name="email" type="email" placeholder="email" ref={register} />
+    <Formik
+      initialValues={{ email: "", password: "", confirm: "" } as FormValues}
+      onSubmit={handleSubmit}
+      validate={validateRegistrationForm}
+    >
+      {({ isSubmitting }) => (
+        <Form>
+          <Field name="email" type="email" placeholder="email" />
 
-        <input
-          name="password"
-          type="password"
-          placeholder="password"
-          ref={register}
-        />
+          <ErrorMessage name="email" component="div" />
 
-        <input
-          name="confirm"
-          type="password"
-          placeholder="confirm password"
-          ref={register}
-        />
+          <Field name="password" type="password" placeholder="password" />
 
-        <button>Register</button>
-      </form>
-    </>
+          <ErrorMessage name="password" component="div" />
+
+          <Field
+            name="confirm"
+            type="password"
+            placeholder="confirm password"
+          />
+
+          <ErrorMessage name="confirm" component="div" />
+
+          <button disabled={isSubmitting}>Register</button>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
