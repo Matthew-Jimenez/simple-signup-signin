@@ -2,16 +2,15 @@ import React, { FC } from "react";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-interface IRootProps {}
+// pages
+import LogIn from "./LogIn";
 
-const Root: FC<IRootProps> = props => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact render={() => <div>login</div>} />
-      </Switch>
-    </BrowserRouter>
-  );
-};
+const Root: FC = () => (
+  <BrowserRouter>
+    <Switch>
+      <Route path="/" exact component={LogIn} />
+    </Switch>
+  </BrowserRouter>
+);
 
 export default Root;
