@@ -2,7 +2,9 @@ import React, { FC } from "react";
 
 import { Formik, FormikHelpers, Field, Form, ErrorMessage } from "formik";
 
-import validateRegistrationForm from "../utils/registration/validateRegistrationForm";
+import validateEmail from "../utils/validation/validateEmail";
+import validateConfirm from "../utils/validation/validateConfirm";
+import validatePassword from "../utils/validation/validatePassword";
 
 interface IRegistrationFormProps {}
 
@@ -23,22 +25,28 @@ const RegistrationForm: FC<IRegistrationFormProps> = props => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      onSubmit={handleSubmit}
-      validate={validateRegistrationForm}
-    >
-      {({ isSubmitting, isValid, dirty }) => {
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      {({ isSubmitting, isValid, dirty, values }) => {
         return (
           <Form>
             <div>
-              <Field type="email" name="email" placeholder="email" />
+              <Field
+                type="email"
+                name="email"
+                placeholder="email"
+                validate={validateEmail}
+              />
             </div>
 
             <ErrorMessage name="email" component="div" />
 
             <div>
-              <Field name="password" type="password" placeholder="password" />
+              <Field
+                name="password"
+                type="password"
+                placeholder="password"
+                validate={validatePassword}
+              />
             </div>
 
             <ErrorMessage name="password" component="div" />
@@ -48,6 +56,9 @@ const RegistrationForm: FC<IRegistrationFormProps> = props => {
                 name="confirm"
                 type="password"
                 placeholder="confirm password"
+                validate={(confirmVal?: string) => {
+                  return validateConfirm(values.password, confirmVal);
+                }}
               />
             </div>
 
