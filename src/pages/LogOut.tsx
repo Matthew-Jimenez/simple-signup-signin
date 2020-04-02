@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
+// modules
+import { Redirect } from "react-router-dom";
+
+// api
 import logout from "../api/logout";
 import clearToken from "../api/clearToken";
-import { useState } from "react";
-import { Redirect } from "react-router-dom";
 
 const LogOut = () => {
   const [complete, setComplete] = useState(false);
@@ -13,8 +15,6 @@ const LogOut = () => {
 
     clearToken();
 
-    console.log("made it");
-
     setComplete(true);
   }, []);
 
@@ -22,7 +22,7 @@ const LogOut = () => {
     return <Redirect to="/login" />;
   }
 
-  return <div />;
+  return <></>;
 };
 
 export default LogOut;
