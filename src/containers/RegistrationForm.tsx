@@ -1,41 +1,26 @@
 import React, { FC } from "react";
 
 // modules
-import { Formik, FormikHelpers, Field, Form } from "formik";
+import { Formik, Field, Form } from "formik";
 
 // components
-import { TextField } from "formik-material-ui";
+import Button from "@material-ui/core/Button";
+import FormikTextField from "../components/Registration/FormikTextField";
 
 // utils
 import validateEmail from "../utils/validation/validateEmail";
 import validateConfirm from "../utils/validation/validateConfirm";
 import validatePassword from "../utils/validation/validatePassword";
-import { Button } from "@material-ui/core";
+
+// api
 import register from "../api/register";
 
 interface IRegistrationFormProps {
   onSubmit?: () => void;
 }
 
-interface FormValues {
-  email: string;
-  password: string;
-  confirm: string;
-}
-
-const initialValues = { email: "", password: "", confirm: "" } as FormValues;
-
-const TextFieldVariant = (props: any) => {
-  return (
-    <TextField margin="normal" variant="filled" fullWidth={true} {...props} />
-  );
-};
-
 const RegistrationForm: FC<IRegistrationFormProps> = ({ onSubmit }) => {
-  const handleSubmit = async (
-    values: FormValues,
-    formikHelpers: FormikHelpers<FormValues>
-  ) => {
+  const handleSubmit = async (values: RegistrationFormValues) => {
     await register({
       email: values.email,
       password: values.password
@@ -46,10 +31,10 @@ const RegistrationForm: FC<IRegistrationFormProps> = ({ onSubmit }) => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      {({ isSubmitting, isValid, dirty, values, errors }) => (
+      {({ isSubmitting, isValid, dirty, values }) => (
         <Form>
           <Field
-            component={TextFieldVariant}
+            component={FormikTextField}
             type="email"
             name="email"
             placeholder="email"
@@ -57,7 +42,7 @@ const RegistrationForm: FC<IRegistrationFormProps> = ({ onSubmit }) => {
           />
 
           <Field
-            component={TextFieldVariant}
+            component={FormikTextField}
             name="password"
             type="password"
             placeholder="password"
@@ -65,7 +50,7 @@ const RegistrationForm: FC<IRegistrationFormProps> = ({ onSubmit }) => {
           />
 
           <Field
-            component={TextFieldVariant}
+            component={FormikTextField}
             name="confirm"
             type="password"
             placeholder="confirm password"
@@ -86,5 +71,11 @@ const RegistrationForm: FC<IRegistrationFormProps> = ({ onSubmit }) => {
     </Formik>
   );
 };
+
+const initialValues = {
+  email: "",
+  password: "",
+  confirm: ""
+} as RegistrationFormValues;
 
 export default RegistrationForm;
