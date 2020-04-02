@@ -12,6 +12,8 @@ interface FormValues {
 const Register: FC<IRegisterProps> = props => {
   return (
     <div>
+      <h1>Register</h1>
+
       <RegistrationForm />
     </div>
   );
