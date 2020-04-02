@@ -16,7 +16,7 @@ const Register: FC<IRegisterProps> = props => {
       <RegistrationForm />
 
       <p>
-        Already have an account? <Link to="/">sign in</Link> to access your
+        Already have an account? <Link to="/">Log in</Link> to access your
         account.
       </p>
     </div>
