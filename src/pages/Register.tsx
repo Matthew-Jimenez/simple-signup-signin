@@ -1,13 +1,12 @@
 import React, { FC } from "react";
+
+// third party modules
+import { Link } from "react-router-dom";
+
+// containers
 import RegistrationForm from "../containers/RegistrationForm";
 
 interface IRegisterProps {}
-
-interface FormValues {
-  email: string;
-  password: string;
-  confirm: string;
-}
 
 const Register: FC<IRegisterProps> = props => {
   return (
@@ -15,6 +14,11 @@ const Register: FC<IRegisterProps> = props => {
       <h1>Register</h1>
 
       <RegistrationForm />
+
+      <p>
+        Already have an account? <Link to="/">sign in</Link> to access your
+        account.
+      </p>
     </div>
   );
 };
