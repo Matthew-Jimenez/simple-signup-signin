@@ -7,6 +7,7 @@ import { Redirect } from "react-router-dom";
 // components
 import Button from "@material-ui/core/Button";
 import FormikTextField from "../components/Registration/FormikTextField";
+import Typography from "@material-ui/core/Typography";
 
 // utils
 import validateEmail from "../utils/validation/validateEmail";
@@ -15,7 +16,6 @@ import validatePassword from "../utils/validation/validatePassword";
 
 // api
 import register from "../api/register";
-import { Typography } from "@material-ui/core";
 import storeToken from "../api/storeToken";
 
 interface IRegistrationFormProps {}
