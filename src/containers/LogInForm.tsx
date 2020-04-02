@@ -48,7 +48,7 @@ const LogInForm: FC<ILogInFormProps> = () => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      {({ isSubmitting, isValid, dirty }) => (
+      {({ isSubmitting, isValid }) => (
         <Form>
           <Field
             component={FormikTextField}
