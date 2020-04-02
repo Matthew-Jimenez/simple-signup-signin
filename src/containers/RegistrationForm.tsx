@@ -16,6 +16,7 @@ import validatePassword from "../utils/validation/validatePassword";
 // api
 import register from "../api/register";
 import { Typography } from "@material-ui/core";
+import storeToken from "../api/storeToken";
 
 interface IRegistrationFormProps {}
 
@@ -32,6 +33,8 @@ const RegistrationForm: FC<IRegistrationFormProps> = () => {
     });
 
     if (res.data) {
+      storeToken(JSON.stringify(res));
+
       setSuccess(true);
       return;
     }
