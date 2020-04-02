@@ -24,6 +24,13 @@ const LogIn: FC<ILogInProps> = () => {
 
       <Box py={1}>
         <Typography variant="body1">
+          Having trouble remembering your password?
+          <Link to="/request-password-reset"> Reset your password</Link>
+        </Typography>
+      </Box>
+
+      <Box py={1}>
+        <Typography variant="body1">
           Don't have an account? <Link to="/register">Register</Link> now to
           join the action.
         </Typography>

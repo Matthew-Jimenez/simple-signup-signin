@@ -1,6 +1,5 @@
-import Cookies from "js-cookie";
-
 import Parse from "./index";
+
 import TokenManager from "utils/TokenManager";
 
 export default async () => {

@@ -11,6 +11,7 @@ import LogOut from "./LogOut";
 
 // containers
 import ValidateAuth from "../containers/ValidateAuth";
+import RequestPasswordReset from "./RequestPasswordReset";
 
 const Root: FC = () => (
   <BrowserRouter>
@@ -30,7 +31,12 @@ const Root: FC = () => (
 
 const unsecuredRoutes = [
   { path: "/login", component: LogIn, exact: false },
-  { path: "/register", component: Register, exact: false }
+  { path: "/register", component: Register, exact: false },
+  {
+    path: "/request-password-reset",
+    component: RequestPasswordReset,
+    exact: false
+  }
 ];
 
 const securedRoutes = [
