@@ -14,7 +14,7 @@ import validateEmail from "../utils/validation/validateEmail";
 
 // api
 import storeToken from "../api/storeToken";
-import register from "../api/register";
+import login from "../api/login";
 
 interface ILogInFormProps {}
 
@@ -25,7 +25,7 @@ const LogInForm: FC<ILogInFormProps> = () => {
   const handleSubmit = async (values: LogInFormValues) => {
     setError(undefined);
 
-    const res = await register({
+    const res = await login({
       email: values.email,
       password: values.password
     });

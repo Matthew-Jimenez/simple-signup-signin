@@ -1,9 +1,20 @@
-import React, { FC } from "react";
+import React from "react";
 
-interface IAuthenticatedPageProps {}
+// modules
+import { Link } from "react-router-dom";
 
-const AuthenticatedPage: FC<IAuthenticatedPageProps> = props => {
-  return <div>Must Be Authenticated</div>;
+// components
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+
+const AuthenticatedPage = () => {
+  return (
+    <Container>
+      <Typography>You have been authenticated</Typography>
+
+      <Link to="/logout">Log Out</Link>
+    </Container>
+  );
 };
 
 export default AuthenticatedPage;

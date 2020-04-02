@@ -7,6 +7,7 @@ import AuthenticatedPage from "./AuthenticatedPage";
 import LogIn from "./LogIn";
 import Register from "./Register";
 import ValidateAuth from "../containers/ValidateAuth";
+import LogOut from "./LogOut";
 
 const unsecuredRoutes = [
   { path: "/login", component: LogIn, exact: false },
@@ -14,7 +15,8 @@ const unsecuredRoutes = [
 ];
 
 const securedRoutes = [
-  { path: "/", component: AuthenticatedPage, exact: true }
+  { path: "/", component: AuthenticatedPage, exact: true },
+  { path: "/logout", component: LogOut, exact: false }
 ];
 
 const Root: FC = () => (
