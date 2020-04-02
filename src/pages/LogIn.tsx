@@ -3,15 +3,17 @@ import React, { FC } from "react";
 // third party modules
 import { Link } from "react-router-dom";
 
-// containers
-import Container from "@material-ui/core/Container";
-import Typography from "@material-ui/core/Typography";
-import LogInForm from "../containers/LogInForm";
+// components
 import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
+import Container from "@material-ui/core/Container";
+
+// containers
+import LogInForm from "../containers/LogInForm";
 
 interface ILogInProps {}
 
-const LogIn: FC<ILogInProps> = props => {
+const LogIn: FC<ILogInProps> = () => {
   return (
     <Container>
       <Box pt={3}>
