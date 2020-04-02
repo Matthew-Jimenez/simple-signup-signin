@@ -2,9 +2,12 @@ import validate from "validate.js";
 
 const constraints = {
   email: {
-    email: true,
     presence: {
-      allowEmpty: false
+      allowEmpty: false,
+      message: " is required. "
+    },
+    email: {
+      message: "must be in correct format. "
     }
   }
 };
