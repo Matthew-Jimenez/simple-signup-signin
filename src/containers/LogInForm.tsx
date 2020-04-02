@@ -72,7 +72,7 @@ const LogInForm: FC<ILogInFormProps> = () => {
           <Button
             type="submit"
             variant="contained"
-            disabled={isSubmitting || !isValid || !dirty}
+            disabled={isSubmitting || !isValid}
           >
             Login
           </Button>
