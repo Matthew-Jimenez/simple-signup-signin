@@ -1,0 +1,3 @@
+interface RequestPasswordResetValues {
+  email: string;
+}

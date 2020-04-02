@@ -12,12 +12,18 @@ import LogOut from "./LogOut";
 // containers
 import ValidateAuth from "../containers/ValidateAuth";
 import RequestPasswordReset from "./RequestPasswordReset";
+import PasswordResetSuccess from "./PasswordResetSuccess";
 
 const Root: FC = () => (
   <BrowserRouter>
     <Switch>
       {unsecuredRoutes.map(route => (
-        <Route key={route.path} {...route} />
+        <Route
+          key={route.path}
+          path={route.path}
+          component={route.component}
+          exact={route.exact}
+        />
       ))}
 
       <ValidateAuth>
@@ -35,6 +41,11 @@ const unsecuredRoutes = [
   {
     path: "/request-password-reset",
     component: RequestPasswordReset,
+    exact: false
+  },
+  {
+    path: "/passwordResetSuccess",
+    component: PasswordResetSuccess,
     exact: false
   }
 ];
