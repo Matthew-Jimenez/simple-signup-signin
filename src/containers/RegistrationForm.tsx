@@ -16,7 +16,7 @@ import validatePassword from "../utils/validation/validatePassword";
 
 // api
 import register from "../api/register";
-import storeToken from "../api/storeToken";
+import TokenManager from "utils/TokenManager";
 
 interface IRegistrationFormProps {}
 
@@ -33,7 +33,7 @@ const RegistrationForm: FC<IRegistrationFormProps> = () => {
     });
 
     if (res.data) {
-      storeToken(JSON.stringify(res));
+      new TokenManager().storeToken(JSON.stringify(res));
 
       setSuccess(true);
       return;

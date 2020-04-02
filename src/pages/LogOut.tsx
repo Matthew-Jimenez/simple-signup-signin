@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 
 // api
 import logout from "../api/logout";
-import clearToken from "../api/clearToken";
+import TokenManager from "utils/TokenManager";
 
 const LogOut = () => {
   const [complete, setComplete] = useState(false);
@@ -13,7 +13,7 @@ const LogOut = () => {
   useEffect(() => {
     logout();
 
-    clearToken();
+    new TokenManager().clearToken();
 
     setComplete(true);
   }, []);

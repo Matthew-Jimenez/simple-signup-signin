@@ -11,9 +11,9 @@ import Typography from "@material-ui/core/Typography";
 
 // utils
 import validateEmail from "../utils/validation/validateEmail";
+import TokenManager from "utils/TokenManager";
 
 // api
-import storeToken from "../api/storeToken";
 import login from "../api/login";
 
 interface ILogInFormProps {}
@@ -31,7 +31,7 @@ const LogInForm: FC<ILogInFormProps> = () => {
     });
 
     if (res.data) {
-      storeToken(JSON.stringify(res));
+      new TokenManager().storeToken(JSON.stringify(res));
 
       setSuccess(true);
       return;

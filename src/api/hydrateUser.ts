@@ -1,11 +1,10 @@
 import Cookies from "js-cookie";
 
 import Parse from "./index";
-
-import { TOKEN_STORAGE } from "./storeToken";
+import TokenManager from "utils/TokenManager";
 
 export default async () => {
-  const userInfo = await Cookies.get(TOKEN_STORAGE);
+  const userInfo = new TokenManager().getToken();
 
   if (userInfo === null || userInfo === undefined) {
     return;
