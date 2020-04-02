@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 
 // containers
-import LogInForm from "../containers/LogInForm";
+import LogInForm from "containers/LogInForm";
 
 interface ILogInProps {}
 
