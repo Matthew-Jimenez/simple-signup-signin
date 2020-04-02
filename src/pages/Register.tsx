@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 
 import { Formik, FormikHelpers, Field, Form, ErrorMessage } from "formik";
+
 import validateRegistrationForm from "../utils/registration/validateRegistrationForm";
 
 interface IRegisterProps {}
@@ -10,6 +11,8 @@ interface FormValues {
   password: string;
   confirm: string;
 }
+
+const initialValues = { email: "", password: "", confirm: "" } as FormValues;
 
 const Register: FC<IRegisterProps> = props => {
   const handleSubmit = (
@@ -21,31 +24,35 @@ const Register: FC<IRegisterProps> = props => {
 
   return (
     <Formik
-      initialValues={{ email: "", password: "", confirm: "" } as FormValues}
+      initialValues={initialValues}
       onSubmit={handleSubmit}
       validate={validateRegistrationForm}
     >
-      {({ isSubmitting }) => (
-        <Form>
-          <Field name="email" type="email" placeholder="email" />
+      {({ isSubmitting, isValid, dirty }) => {
+        return (
+          <Form>
+            <Field type="email" name="email" placeholder="email" />
 
-          <ErrorMessage name="email" component="div" />
+            <ErrorMessage name="email" component="div" />
 
-          <Field name="password" type="password" placeholder="password" />
+            <Field name="password" type="password" placeholder="password" />
 
-          <ErrorMessage name="password" component="div" />
+            <ErrorMessage name="password" component="div" />
 
-          <Field
-            name="confirm"
-            type="password"
-            placeholder="confirm password"
-          />
+            <Field
+              name="confirm"
+              type="password"
+              placeholder="confirm password"
+            />
 
-          <ErrorMessage name="confirm" component="div" />
+            <ErrorMessage name="confirm" component="div" />
 
-          <button disabled={isSubmitting}>Register</button>
-        </Form>
-      )}
+            <button disabled={isSubmitting || !isValid || !dirty}>
+              Register
+            </button>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };
