@@ -1,10 +1,16 @@
 import React, { FC } from "react";
 
-import { Formik, FormikHelpers, Field, Form, ErrorMessage } from "formik";
+// modules
+import { Formik, FormikHelpers, Field, Form } from "formik";
 
+// components
+import { TextField } from "formik-material-ui";
+
+// utils
 import validateEmail from "../utils/validation/validateEmail";
 import validateConfirm from "../utils/validation/validateConfirm";
 import validatePassword from "../utils/validation/validatePassword";
+import { Button } from "@material-ui/core";
 
 interface IRegistrationFormProps {}
 
@@ -16,6 +22,12 @@ interface FormValues {
 
 const initialValues = { email: "", password: "", confirm: "" } as FormValues;
 
+const TextFieldVariant = (props: any) => {
+  return (
+    <TextField margin="normal" variant="filled" fullWidth={true} {...props} />
+  );
+};
+
 const RegistrationForm: FC<IRegistrationFormProps> = props => {
   const handleSubmit = (
     values: FormValues,
@@ -26,47 +38,42 @@ const RegistrationForm: FC<IRegistrationFormProps> = props => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      {({ isSubmitting, isValid, dirty, values }) => {
+      {({ isSubmitting, isValid, dirty, values, errors }) => {
+        console.log(errors);
         return (
           <Form>
-            <div>
-              <Field
-                type="email"
-                name="email"
-                placeholder="email"
-                validate={validateEmail}
-              />
-            </div>
+            <Field
+              component={TextFieldVariant}
+              type="email"
+              name="email"
+              placeholder="email"
+              validate={validateEmail}
+            />
 
-            <ErrorMessage name="email" component="div" />
+            <Field
+              component={TextFieldVariant}
+              name="password"
+              type="password"
+              placeholder="password"
+              validate={validatePassword}
+            />
 
-            <div>
-              <Field
-                name="password"
-                type="password"
-                placeholder="password"
-                validate={validatePassword}
-              />
-            </div>
+            <Field
+              component={TextFieldVariant}
+              name="confirm"
+              type="password"
+              placeholder="confirm password"
+              validate={(confirmVal?: string) => {
+                return validateConfirm(values.password, confirmVal);
+              }}
+            />
 
-            <ErrorMessage name="password" component="div" />
-
-            <div>
-              <Field
-                name="confirm"
-                type="password"
-                placeholder="confirm password"
-                validate={(confirmVal?: string) => {
-                  return validateConfirm(values.password, confirmVal);
-                }}
-              />
-            </div>
-
-            <ErrorMessage name="confirm" component="div" />
-
-            <button disabled={isSubmitting || !isValid || !dirty}>
+            <Button
+              variant="contained"
+              disabled={isSubmitting || !isValid || !dirty}
+            >
               Register
-            </button>
+            </Button>
           </Form>
         );
       }}

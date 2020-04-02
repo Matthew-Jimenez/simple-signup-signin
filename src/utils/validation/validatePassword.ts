@@ -58,5 +58,7 @@ export default (password?: string) => {
 
   errors.push(oneDigitError);
 
-  return errors.flat();
+  console.log(errors);
+
+  return errors.filter(item => item != null);
 };
