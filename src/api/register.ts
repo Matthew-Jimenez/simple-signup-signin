@@ -1,13 +1,23 @@
 import Parse from "../api";
 
 export default async ({ email, password }: RegisterParams) => {
-  const user = new Parse.User();
+  const response = {} as ApiResponse;
 
-  user.set("username", email);
-  user.set("email", email);
-  user.set("password", password);
+  try {
+    const user = new Parse.User();
 
-  const res = await user.signUp();
+    user.set("username", email);
+    user.set("email", email);
+    user.set("password", password);
 
-  return res;
+    response.data = await user.signUp();
+
+    return response;
+  } catch (error) {
+    console.log(error);
+
+    response.error = error;
+
+    return response;
+  }
 };

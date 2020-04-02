@@ -1,7 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 
 // modules
 import { Formik, Field, Form } from "formik";
+import { Redirect } from "react-router-dom";
 
 // components
 import Button from "@material-ui/core/Button";
@@ -14,61 +15,82 @@ import validatePassword from "../utils/validation/validatePassword";
 
 // api
 import register from "../api/register";
+import { Typography } from "@material-ui/core";
 
-interface IRegistrationFormProps {
-  onSubmit?: () => void;
-}
+interface IRegistrationFormProps {}
 
-const RegistrationForm: FC<IRegistrationFormProps> = ({ onSubmit }) => {
+const RegistrationForm: FC<IRegistrationFormProps> = () => {
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<undefined | string>();
+
   const handleSubmit = async (values: RegistrationFormValues) => {
-    await register({
+    setError(undefined);
+
+    const res = await register({
       email: values.email,
       password: values.password
     });
 
-    onSubmit && onSubmit();
+    if (res.data) {
+      setSuccess(true);
+      return;
+    }
+
+    if (res.error) {
+      setError(res.error.message);
+    }
   };
 
+  if (success) {
+    return <Redirect to="/" />;
+  }
+
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      {({ isSubmitting, isValid, dirty, values }) => (
-        <Form>
-          <Field
-            component={FormikTextField}
-            type="email"
-            name="email"
-            placeholder="email"
-            validate={validateEmail}
-          />
+    <>
+      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+        {({ isSubmitting, isValid, dirty, values }) => (
+          <Form>
+            <Field
+              component={FormikTextField}
+              type="email"
+              name="email"
+              placeholder="email"
+              validate={validateEmail}
+            />
 
-          <Field
-            component={FormikTextField}
-            name="password"
-            type="password"
-            placeholder="password"
-            validate={validatePassword}
-          />
+            <Field
+              component={FormikTextField}
+              name="password"
+              type="password"
+              placeholder="password"
+              validate={validatePassword}
+            />
 
-          <Field
-            component={FormikTextField}
-            name="confirm"
-            type="password"
-            placeholder="confirm password"
-            validate={(confirmVal?: string) => {
-              return validateConfirm(values.password, confirmVal);
-            }}
-          />
+            <Field
+              component={FormikTextField}
+              name="confirm"
+              type="password"
+              placeholder="confirm password"
+              validate={(confirmVal?: string) => {
+                return validateConfirm(values.password, confirmVal);
+              }}
+            />
 
-          <Button
-            type="submit"
-            variant="contained"
-            disabled={isSubmitting || !isValid || !dirty}
-          >
-            Register
-          </Button>
-        </Form>
-      )}
-    </Formik>
+            <Typography gutterBottom={true} variant="body1" color="error">
+              {error}
+            </Typography>
+
+            <Button
+              type="submit"
+              variant="contained"
+              disabled={isSubmitting || !isValid || !dirty}
+            >
+              Register
+            </Button>
+          </Form>
+        )}
+      </Formik>
+    </>
   );
 };
 
