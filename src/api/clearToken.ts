@@ -1,8 +1,10 @@
+import Cookies from "js-cookie";
+
 import { TOKEN_STORAGE } from "./storeToken";
 
 export default () => {
   try {
-    localStorage.removeItem(TOKEN_STORAGE);
+    Cookies.remove(TOKEN_STORAGE);
 
     return true;
   } catch (error) {

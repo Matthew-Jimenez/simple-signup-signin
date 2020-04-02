@@ -1,11 +1,13 @@
+import Cookies from "js-cookie";
+
 import Parse from "./index";
 
 import { TOKEN_STORAGE } from "./storeToken";
 
 export default async () => {
-  const userInfo = await localStorage.getItem(TOKEN_STORAGE);
+  const userInfo = await Cookies.get(TOKEN_STORAGE);
 
-  if (userInfo === null) {
+  if (userInfo === null || userInfo === undefined) {
     return;
   }
 
