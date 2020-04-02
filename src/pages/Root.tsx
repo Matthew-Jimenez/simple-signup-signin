@@ -3,11 +3,13 @@ import React, { FC } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 // pages
+import AuthenticatedPage from "./AuthenticatedPage";
 import LogIn from "./LogIn";
 import Register from "./Register";
 
 const routes = [
-  { path: "/", component: LogIn, exact: true },
+  { path: "/", component: AuthenticatedPage, exact: true },
+  { path: "/login", component: LogIn, exact: false },
   { path: "/register", component: Register, exact: false }
 ];
 

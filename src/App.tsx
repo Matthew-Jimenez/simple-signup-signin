@@ -6,6 +6,8 @@ import Root from "./pages/Root";
 
 import theme from "./theme";
 
+import "./api";
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
