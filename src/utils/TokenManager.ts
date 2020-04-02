@@ -1,11 +1,16 @@
 import Cookies from "js-cookie";
+import getEnvVar from "./getEnvVar";
+
+const cookiesDomain = getEnvVar("REACT_APP_COOKIES_DOMAIN");
 
 class TokenManager {
   private tokenKey = "demo-app:session-token";
 
+  private tokenDomain = { path: "", domain: cookiesDomain };
+
   public clearToken() {
     try {
-      Cookies.remove(this.tokenKey);
+      Cookies.remove(this.tokenKey, this.tokenDomain);
 
       return true;
     } catch (error) {
@@ -17,7 +22,7 @@ class TokenManager {
 
   public storeToken(sessionToken: string) {
     try {
-      Cookies.set(this.tokenKey, sessionToken);
+      Cookies.set(this.tokenKey, sessionToken, this.tokenDomain);
 
       return true;
     } catch (error) {
