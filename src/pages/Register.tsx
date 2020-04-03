@@ -16,32 +16,30 @@ interface IRegisterProps {}
 
 const Register: FC<IRegisterProps> = props => {
   return (
-    <>
+    <Container>
       <Box p={1}>
         <Logo variant="h4" />
       </Box>
 
-      <Container>
-        <Box pt={3}>
-          <Typography gutterBottom variant="h3">
-            Register
-          </Typography>
+      <Box pt={3}>
+        <Typography gutterBottom variant="h3">
+          Register
+        </Typography>
 
-          <Typography color="textSecondary" variant="body1">
-            Create a profile to join the Appname community!
-          </Typography>
-        </Box>
+        <Typography color="textSecondary" variant="body1">
+          Create a profile to join the Appname community!
+        </Typography>
+      </Box>
 
-        <RegistrationForm />
+      <RegistrationForm />
 
-        <Box py={1}>
-          <Typography color="textSecondary">
-            Already have an account? <Link to="/">Log in</Link> to access your
-            account.
-          </Typography>
-        </Box>
-      </Container>
-    </>
+      <Box py={1}>
+        <Typography color="textSecondary">
+          Already have an account? <Link to="/">Log in</Link> to access your
+          account.
+        </Typography>
+      </Box>
+    </Container>
   );
 };
 
