@@ -17,7 +17,7 @@ interface IRegisterProps {}
 const Register: FC<IRegisterProps> = props => {
   return (
     <Container>
-      <Box p={1}>
+      <Box py={1}>
         <Logo variant="h4" />
       </Box>
 
