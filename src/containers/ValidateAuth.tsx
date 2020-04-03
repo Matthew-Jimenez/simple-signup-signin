@@ -23,7 +23,7 @@ const ValidateAuth: FC<IAuthenticateProps> = ({ children }) => {
   }, [runHydrateUser]);
 
   if (loading) {
-    return <div>loading</div>;
+    return <div />;
   }
 
   if (!sessionFound) {

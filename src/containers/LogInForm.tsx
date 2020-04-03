@@ -70,6 +70,9 @@ const LogInForm: FC<ILogInFormProps> = () => {
           </Typography>
 
           <Button
+            fullWidth
+            size="large"
+            color="primary"
             type="submit"
             variant="contained"
             disabled={isSubmitting || !isValid}

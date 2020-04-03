@@ -59,6 +59,9 @@ const RequestPasswordResetForm: FC<IRequestPasswordResetProps> = () => {
           <Button
             type="submit"
             variant="contained"
+            size="large"
+            color="primary"
+            fullWidth={true}
             disabled={isSubmitting || !isValid}
           >
             Get Link
