@@ -35,7 +35,7 @@ const Register: FC<IRegisterProps> = props => {
         <RegistrationForm />
 
         <Box py={1}>
-          <Typography>
+          <Typography color="textSecondary">
             Already have an account? <Link to="/">Log in</Link> to access your
             account.
           </Typography>

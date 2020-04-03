@@ -84,6 +84,9 @@ const RegistrationForm: FC<IRegistrationFormProps> = () => {
             </Typography>
 
             <Button
+              color="primary"
+              size="large"
+              fullWidth={true}
               type="submit"
               variant="contained"
               disabled={isSubmitting || !isValid || !dirty}
